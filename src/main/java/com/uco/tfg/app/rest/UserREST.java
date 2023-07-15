@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uco.tfg.app.model.User;
 import com.uco.tfg.app.service.UserService;
+
+import ch.qos.logback.core.status.Status;
 
 @RestController
 @RequestMapping ("api/user")
@@ -53,6 +56,15 @@ public class UserREST {
 	@GetMapping (value = "{id}")
 	private ResponseEntity<Optional<User>> getUserById(@PathVariable ("id") Long id){
 		return ResponseEntity.ok(userService.findById(id));
+	}
+	
+	@GetMapping ("/find")
+	private ResponseEntity<?> getUserByEmail(@RequestParam String email){
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(userService.findByEmail(email));
+		}catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage() ));
+		}
 	}
 	
 }

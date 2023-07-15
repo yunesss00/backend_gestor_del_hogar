@@ -31,4 +31,14 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 	
+	public User findByEmail(String email) throws Exception{
+		User user = null;
+		try  {
+			user = userRepository.findByEmail(email);
+		}catch(Exception e) {
+			
+		}
+		return user;
+	}
+	
 }
