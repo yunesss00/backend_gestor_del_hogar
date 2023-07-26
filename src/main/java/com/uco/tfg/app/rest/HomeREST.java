@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uco.tfg.app.model.Home;
+import com.uco.tfg.app.model.HomeParticipant;
 import com.uco.tfg.app.service.HomeService;
 
 @RestController
@@ -52,6 +54,24 @@ public class HomeREST {
 	@GetMapping (value = "{id}")
 	private ResponseEntity<Optional<Home>> getHomeById(@PathVariable ("id") Long id){
 		return ResponseEntity.ok(homeService.findById(id));
+	}
+	
+	@PostMapping("/participants")
+	private ResponseEntity<?> addParticipant(@RequestBody HomeParticipant participant){
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(homeService.addParticipant(participant));
+		}catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage() ));
+		}
+	}
+	
+	@GetMapping("/myHome")
+	private ResponseEntity<?> findMyHome(@RequestParam Long user){
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(homeService.findMyHome(user));
+		}catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage() ));
+		}
 	}
 	
 }
