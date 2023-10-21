@@ -11,7 +11,7 @@ import com.uco.tfg.app.model.HomeParticipant;
 @Repository
 public interface HomeRepository extends JpaRepository<Home, Long> {
 
-	@Query(value = "insert into homeparticipants (userid,homeid,deleted)\r\n"
+	@Query(value = "insert into homeparticipants (homeid,userid,deleted)\r\n"
 			+ "values(:USER, :HOME,0)", 
 			nativeQuery = true)
 	HomeParticipant addParticipant(@Param("USER") Long user,@Param("HOME") Long home);
