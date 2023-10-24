@@ -1,10 +1,17 @@
 package com.uco.tfg.app.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -22,6 +29,14 @@ public class Product {
 
 	@Column(name = "productPrice")
 	private Float productPrice;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(
+				name = "shoppingListItems", joinColumns = @JoinColumn(name = "productId", referencedColumnName = "id"),
+				inverseJoinColumns =  @JoinColumn(name = "listId", referencedColumnName = "id")
+	)
+	private List<ShoppingList> lstShoppingLists;
+	
 
 	public Long getId() {
 		return id;

@@ -1,10 +1,16 @@
 package com.uco.tfg.app.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -23,7 +29,20 @@ public class ShoppingList {
     private Float totalPrice;
 
     @Column(name = "userId")
-    private User user;
+    private Long userId;
+    
+    @Column(name = "homeShoppingList")
+    private int homeShoppingList;    
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "homeId")
+    private Home home; 
+    
+    @ManyToMany(mappedBy = "lstShoppingList")
+    private List<User> lstUsers;
+    
+    @ManyToMany(mappedBy = "lstShoppingList")
+    private List<Product> lsProducts;
 
     public Long getId() {
         return id;
@@ -41,11 +60,11 @@ public class ShoppingList {
         this.totalPrice = totalPrice;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUser() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Long userId) {
+        this.userId = userId;
     }
 }

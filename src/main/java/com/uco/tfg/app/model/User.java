@@ -1,12 +1,19 @@
 package com.uco.tfg.app.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "users")
@@ -31,8 +38,35 @@ public class User {
 
 	@Column(name = "photo")
 	private String photo;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(
+				name = "homeParticipant", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
+				inverseJoinColumns =  @JoinColumn(name = "homeId", referencedColumnName = "id")
+	)
+	private List<Home> lstHomes;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(
+				name = "itineraryAssignments", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
+				inverseJoinColumns =  @JoinColumn(name = "itineraryId", referencedColumnName = "id")
+	)
+	private List<Itinerary> lstItineraries;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(
+				name = "assignedTasks", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
+				inverseJoinColumns =  @JoinColumn(name = "taskId", referencedColumnName = "id")
+	)
+	private List<Task> lstTasks;
 
-
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(
+				name = "shoppingListParticipants", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
+				inverseJoinColumns =  @JoinColumn(name = "listId", referencedColumnName = "id")
+	)
+	private List<ShoppingList> lstShoppingList;
+	
 	public Long getId() {
 		return id;
 	}
