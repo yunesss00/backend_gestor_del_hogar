@@ -33,6 +33,9 @@ public class Task {
 	@Column(name = "creator")
 	private Long creator;
 	
+	@Column(name = "done")
+	private int done;
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(
 				name = "itineraryTasks", joinColumns = @JoinColumn(name = "itineraryId", referencedColumnName = "id"),
@@ -67,4 +70,18 @@ public class Task {
 	public void setCreator(Long creator) {
 		this.creator = creator;
 	}
+	public List<Itinerary> getLstItineraries() {
+		return lstItineraries;
+	}
+	public void setLstItineraries(List<Itinerary> lstItineraries) {
+		this.lstItineraries = lstItineraries;
+	}
+	public List<User> getLstUsers() {
+		return lstUsers;
+	}
+	public void setLstUsers(List<User> lstUsers) {
+		this.lstUsers = lstUsers;
+	}
+	
+	
 }

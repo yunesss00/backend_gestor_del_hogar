@@ -41,7 +41,7 @@ public class ShoppingList {
     @ManyToMany(mappedBy = "lstShoppingList")
     private List<User> lstUsers;
     
-    @ManyToMany(mappedBy = "lstShoppingList")
+    @ManyToMany(mappedBy = "lstShoppingLists")
     private List<Product> lsProducts;
 
     public Long getId() {
@@ -67,4 +67,46 @@ public class ShoppingList {
     public void setUser(Long userId) {
         this.userId = userId;
     }
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public int getHomeShoppingList() {
+		return homeShoppingList;
+	}
+
+	public void setHomeShoppingList(int homeShoppingList) {
+		this.homeShoppingList = homeShoppingList;
+	}
+
+	public Home getHome() {
+		return home;
+	}
+
+	public void setHome(Home home) {
+		this.home = home;
+	}
+
+	public List<User> getLstUsers() {
+		return lstUsers;
+	}
+
+	public void setLstUsers(List<User> lstUsers) {
+		this.lstUsers = lstUsers;
+	}
+
+	public List<Product> getLsProducts() {
+		return lsProducts;
+	}
+
+	public void setLsProducts(List<Product> lsProducts) {
+		this.lsProducts = lsProducts;
+	}
+    
+    
 }

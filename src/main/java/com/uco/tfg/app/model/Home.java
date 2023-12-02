@@ -60,5 +60,22 @@ public class Home {
 	public void setCreator(Long creator) {
 		this.creator = creator;
 	}
+
+	public List<User> getLstUsers() {
+		return lstUsers;
+	}
+
+	public void setLstUsers(List<User> lstUsers) {
+		this.lstUsers = lstUsers;
+	}
+
+	public List<ShoppingList> getLstShoppingList() {
+		return lstShoppingList;
+	}
+
+	public void setLstShoppingList(List<ShoppingList> lstShoppingList) {
+		this.lstShoppingList = lstShoppingList;
+	}
+	
 	
 }

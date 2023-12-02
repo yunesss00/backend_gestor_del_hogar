@@ -56,4 +56,22 @@ public class Itinerary {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public List<User> getLstUsers() {
+		return lstUsers;
+	}
+
+	public void setLstUsers(List<User> lstUsers) {
+		this.lstUsers = lstUsers;
+	}
+
+	public List<Task> getLstTasks() {
+		return lstTasks;
+	}
+
+	public void setLstTasks(List<Task> lstTasks) {
+		this.lstTasks = lstTasks;
+	}
+	
+	
 }
