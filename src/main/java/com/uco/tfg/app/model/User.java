@@ -41,7 +41,7 @@ public class User {
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(
-				name = "homeParticipant", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
+				name = "homeParticipants", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
 				inverseJoinColumns =  @JoinColumn(name = "homeId", referencedColumnName = "id")
 	)
 	private List<Home> lstHomes;
