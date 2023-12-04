@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uco.tfg.app.model.Home;
+import com.uco.tfg.app.model.User;
 //import com.uco.tfg.app.model.HomeParticipant;
 import com.uco.tfg.app.service.HomeService;
 
@@ -56,15 +57,17 @@ public class HomeREST {
 		return ResponseEntity.ok(homeService.findById(id));
 	}
 	
-	/*@PostMapping("/participants")
-	private ResponseEntity<?> addParticipant(@RequestBody HomeParticipant participant){
-		try {
-			return ResponseEntity.status(HttpStatus.OK).body(homeService.addParticipant(participant));
-		}catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage() ));
-		}
+	@PostMapping("/participants")
+	private ResponseEntity<?> addParticipant(@RequestBody User participant, @RequestParam Long homeId){
+	    try {
+	        // Asumiendo que homeService.addParticipant toma un User y un homeId
+	        return ResponseEntity.status(HttpStatus.OK).body(homeService.addParticipant(participant, homeId));
+	    } catch(Exception e) {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("error: " + e.getMessage());
+	    }
 	}
-	*/
+
+	
 	@GetMapping("/myHome")
 	private ResponseEntity<?> findMyHome(@RequestParam Long user){
 		try {

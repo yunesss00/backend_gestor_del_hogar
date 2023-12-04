@@ -59,13 +59,6 @@ public class User {
 				inverseJoinColumns =  @JoinColumn(name = "taskId", referencedColumnName = "id")
 	)
 	private List<Task> lstTasks;
-
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinTable(
-				name = "shoppingListParticipants", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
-				inverseJoinColumns =  @JoinColumn(name = "listId", referencedColumnName = "id")
-	)
-	private List<ShoppingList> lstShoppingList;
 	
 	public Long getId() {
 		return id;
@@ -103,4 +96,18 @@ public class User {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	public List<Itinerary> getLstItineraries() {
+		return lstItineraries;
+	}
+	public void setLstItineraries(List<Itinerary> lstItineraries) {
+		this.lstItineraries = lstItineraries;
+	}
+	public List<Task> getLstTasks() {
+		return lstTasks;
+	}
+	public void setLstTasks(List<Task> lstTasks) {
+		this.lstTasks = lstTasks;
+	}
+	
+	
 }

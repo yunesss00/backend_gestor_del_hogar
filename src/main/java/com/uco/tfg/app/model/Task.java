@@ -30,6 +30,9 @@ public class Task {
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "description")
+	private String description;
+
 	@Column(name = "creator")
 	private Long creator;
 	
@@ -64,23 +67,23 @@ public class Task {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public int getDone() {
+		return done;
+	}
+	public void setDone(int done) {
+		this.done = done;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public Long getCreator() {
 		return creator;
 	}
 	public void setCreator(Long creator) {
 		this.creator = creator;
-	}
-	public List<Itinerary> getLstItineraries() {
-		return lstItineraries;
-	}
-	public void setLstItineraries(List<Itinerary> lstItineraries) {
-		this.lstItineraries = lstItineraries;
-	}
-	public List<User> getLstUsers() {
-		return lstUsers;
-	}
-	public void setLstUsers(List<User> lstUsers) {
-		this.lstUsers = lstUsers;
 	}
 	
 	

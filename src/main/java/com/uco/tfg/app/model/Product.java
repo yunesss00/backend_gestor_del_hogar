@@ -62,13 +62,6 @@ public class Product {
 		this.productPrice = productPrice;
 	}
 
-	public List<ShoppingList> getLstShoppingLists() {
-		return lstShoppingLists;
-	}
-
-	public void setLstShoppingLists(List<ShoppingList> lstShoppingLists) {
-		this.lstShoppingLists = lstShoppingLists;
-	}
 	
 	
 }

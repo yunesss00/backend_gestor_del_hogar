@@ -34,12 +34,8 @@ public class ShoppingList {
     @Column(name = "homeShoppingList")
     private int homeShoppingList;    
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "homeId")
-    private Home home; 
-    
     @ManyToMany(mappedBy = "lstShoppingList")
-    private List<User> lstUsers;
+    private List<Home> lstHomes; 
     
     @ManyToMany(mappedBy = "lstShoppingLists")
     private List<Product> lsProducts;
@@ -82,22 +78,6 @@ public class ShoppingList {
 
 	public void setHomeShoppingList(int homeShoppingList) {
 		this.homeShoppingList = homeShoppingList;
-	}
-
-	public Home getHome() {
-		return home;
-	}
-
-	public void setHome(Home home) {
-		this.home = home;
-	}
-
-	public List<User> getLstUsers() {
-		return lstUsers;
-	}
-
-	public void setLstUsers(List<User> lstUsers) {
-		this.lstUsers = lstUsers;
 	}
 
 	public List<Product> getLsProducts() {

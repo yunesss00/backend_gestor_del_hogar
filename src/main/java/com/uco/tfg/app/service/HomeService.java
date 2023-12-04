@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uco.tfg.app.model.Home;
+import com.uco.tfg.app.model.User;
 //import com.uco.tfg.app.model.HomeParticipant;
 import com.uco.tfg.app.repository.HomeRepository;
 
@@ -32,9 +33,9 @@ public class HomeService {
 		return homeRepository.findById(id);
 	}
 	
-/*	public HomeParticipant addParticipant(HomeParticipant participant) {
-		return homeRepository.addParticipant(participant.getHomeId(),participant.getUserId());
-	}*/
+	public boolean addParticipant(User participant, Long homeId) {
+		return homeRepository.addParticipant(participant.getId(),homeId);
+	}
 	
 	public Home findMyHome(Long user) {
 		return homeRepository.findMyHome(user);

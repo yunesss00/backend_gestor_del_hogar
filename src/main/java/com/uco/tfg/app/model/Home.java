@@ -9,9 +9,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -30,11 +30,18 @@ public class Home {
 	@Column(name = "creator")
 	private Long creator;
 	
+	@Column(name = "description")
+	private String description;
+	
 	@ManyToMany(mappedBy = "lstHomes")
 	private List<User> lstUsers;
 	
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "home" , cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(
+				name = "homeShoppingLists", joinColumns = @JoinColumn(name = "homeId", referencedColumnName = "id"),
+				inverseJoinColumns =  @JoinColumn(name = "listId", referencedColumnName = "id")
+	)	
 	private List<ShoppingList> lstShoppingList;
 
 	public Long getId() {
@@ -59,6 +66,14 @@ public class Home {
 
 	public void setCreator(Long creator) {
 		this.creator = creator;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<User> getLstUsers() {

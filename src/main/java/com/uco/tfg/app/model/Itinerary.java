@@ -25,6 +25,9 @@ public class Itinerary {
 
 	@Column(name = "name", nullable = false)
 	private String name;
+
+	@Column(name = "description")
+	private String description;
 	
 	@ManyToMany(mappedBy = "lstItineraries")
 	private List<User> lstUsers;
@@ -57,12 +60,12 @@ public class Itinerary {
 		this.name = name;
 	}
 
-	public List<User> getLstUsers() {
-		return lstUsers;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setLstUsers(List<User> lstUsers) {
-		this.lstUsers = lstUsers;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<Task> getLstTasks() {
