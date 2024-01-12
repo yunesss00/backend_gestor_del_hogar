@@ -6,18 +6,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.uco.tfg.app.model.Home;
-//import com.uco.tfg.app.model.HomeParticipant;
 
 @Repository
 public interface HomeRepository extends JpaRepository<Home, Long> {
 
-	@Query(value = "insert into homeparticipants (homeid,userid,deleted)\r\n"
+	@Query(value = "insert into homeparticipants (userid,homeid,deleted)\r\n"
 			+ "values(:USER, :HOME,0)", 
 			nativeQuery = true)
 	boolean addParticipant(@Param("USER") Long user,@Param("HOME") Long home);
 	
-	@Query(value = "select h.id, h.name, h.creator from homes h\r\n"
-			+ "join home_participants hp\r\n"
+	@Query(value = "select h.id, h.name, h.creator, h.description from homes h\r\n"
+			+ "join homeparticipants hp\r\n"
 			+ "	on hp.homeid = h.id\r\n"
 			+ "where hp.userid = :USER", 
 			nativeQuery = true)

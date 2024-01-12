@@ -58,23 +58,23 @@ public class HomeREST {
 	}
 	
 	@PostMapping("/participants")
-	private ResponseEntity<?> addParticipant(@RequestBody User participant, @RequestParam Long homeId){
+	private ResponseEntity<?> addParticipant(@RequestParam Long userId, @RequestParam Long homeId){
 	    try {
 	        // Asumiendo que homeService.addParticipant toma un User y un homeId
-	        return ResponseEntity.status(HttpStatus.OK).body(homeService.addParticipant(participant, homeId));
+	        return ResponseEntity.status(HttpStatus.OK).body(homeService.addParticipant(userId, homeId));
 	    } catch(Exception e) {
 	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("error: " + e.getMessage());
 	    }
 	}
-
 	
 	@GetMapping("/myHome")
-	private ResponseEntity<?> findMyHome(@RequestParam Long user){
+	private ResponseEntity<?> findMyHome(@RequestParam Long userId){
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(homeService.findMyHome(user));
+			return ResponseEntity.status(HttpStatus.OK).body(homeService.findMyHome(userId));
 		}catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage() ));
 		}
+		
 	}
 	
 }

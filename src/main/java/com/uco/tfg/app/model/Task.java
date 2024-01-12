@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -36,9 +37,6 @@ public class Task {
 	@Column(name = "creator")
 	private Long creator;
 	
-	@Column(name = "done")
-	private int done;
-	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(
 				name = "itineraryTasks", joinColumns = @JoinColumn(name = "itineraryId", referencedColumnName = "id"),
@@ -48,6 +46,12 @@ public class Task {
 	
 	@ManyToMany(mappedBy = "lstTasks")
 	private List<User> lstUsers;
+	
+	@ManyToMany(mappedBy = "lstTasks")
+	private List<Home> lstHomes;
+	
+	@OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AssignedTask> lstAssignedTask;
 
 	public Long getId() {
 		return id;
@@ -67,12 +71,6 @@ public class Task {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getDone() {
-		return done;
-	}
-	public void setDone(int done) {
-		this.done = done;
-	}
 	public String getDescription() {
 		return description;
 	}
@@ -85,6 +83,5 @@ public class Task {
 	public void setCreator(Long creator) {
 		this.creator = creator;
 	}
-	
 	
 }

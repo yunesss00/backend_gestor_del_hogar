@@ -33,11 +33,11 @@ public class HomeService {
 		return homeRepository.findById(id);
 	}
 	
-	public boolean addParticipant(User participant, Long homeId) {
-		return homeRepository.addParticipant(participant.getId(),homeId);
+	public boolean addParticipant(Long userId, Long homeId) {
+		return homeRepository.addParticipant(userId,homeId);
 	}
 	
-	public Home findMyHome(Long user) {
-		return homeRepository.findMyHome(user);
+	public Home findMyHome(Long userId) {
+		return homeRepository.findMyHome(userId);
 	}
 }

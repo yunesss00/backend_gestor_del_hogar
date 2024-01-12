@@ -43,6 +43,13 @@ public class Home {
 				inverseJoinColumns =  @JoinColumn(name = "listId", referencedColumnName = "id")
 	)	
 	private List<ShoppingList> lstShoppingList;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(
+				name = "assignedtasks", joinColumns = @JoinColumn(name = "homeId", referencedColumnName = "id"),
+				inverseJoinColumns =  @JoinColumn(name = "taskId", referencedColumnName = "id")
+	)
+	private List<Task> lstTasks;
 
 	public Long getId() {
 		return id;
@@ -91,6 +98,14 @@ public class Home {
 	public void setLstShoppingList(List<ShoppingList> lstShoppingList) {
 		this.lstShoppingList = lstShoppingList;
 	}
-	
+
+	public List<Task> getLstTasks() {
+		return lstTasks;
+	}
+
+	public void setLstTasks(List<Task> lstTasks) {
+		this.lstTasks = lstTasks;
+	}
+
 	
 }
