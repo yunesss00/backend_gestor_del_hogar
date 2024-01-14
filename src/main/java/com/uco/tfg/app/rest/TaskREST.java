@@ -74,4 +74,29 @@ public class TaskREST {
 		return ResponseEntity.ok(taskService.findByHomeIdAndDate(homeId,localDate));
 	}
 	
+	@GetMapping("/assigned/home/myTasks")	
+	private ResponseEntity<List<AssignedTask>> getHomeMyAssignedTasks(
+			@RequestParam Long homeId, 
+			@RequestParam String date,
+			@RequestParam Long userId){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+
+		
+		return ResponseEntity.ok(taskService.findByHomeIdAndDateAndUserId(homeId,localDate,userId));
+	}
+	
+	@GetMapping("/assigned/home/dotList")	
+	private ResponseEntity<List<Integer>> getDotListTasks(
+			@RequestParam Long homeId, 
+			@RequestParam String initDate,
+			@RequestParam String endDate){
+       /* DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localInitDate = LocalDate.parse(initDate, formatter);
+        LocalDate localEndDate = LocalDate.parse(endDate, formatter);
+*/
+		
+		return ResponseEntity.ok(taskService.getDotListTasks(homeId,initDate,endDate));
+	}
+	
 }
