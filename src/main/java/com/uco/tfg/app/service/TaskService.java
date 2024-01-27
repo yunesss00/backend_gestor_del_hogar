@@ -45,7 +45,13 @@ public class TaskService {
 	public List<AssignedTask> findByHomeIdAndDateAndUserId(Long homeId, LocalDate date, Long userId) {
 		return assignedTaskRepository.findByHomeIdAndDateAndUserId(homeId,date,userId);
 	}
+	
 	public List<Integer> getDotListTasks(Long homeId,String initDate, String endDate) {
 		return assignedTaskRepository.getDotListTasks(homeId,initDate,endDate);
 	}
+	
+	public List<Task> getHomeTasks(Long homeId) {
+		return taskRepository.findByHomeId(homeId);
+	}
+	
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uco.tfg.app.model.Itinerary;
+import com.uco.tfg.app.model.Task;
 import com.uco.tfg.app.service.ItineraryService;
 
 @RestController
@@ -53,5 +54,11 @@ public class ItineraryREST {
     private ResponseEntity<Optional<Itinerary>> getItineraryById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(itineraryService.findById(id));
     }
+    
+    @GetMapping("/home/{homeId}")	
+	private ResponseEntity<List<Itinerary>> getHomeItineraries(@PathVariable Long homeId){
+		
+		return ResponseEntity.ok(itineraryService.getHomeItineraries(homeId));
+	}
 
 }

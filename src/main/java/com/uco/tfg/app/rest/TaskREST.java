@@ -90,13 +90,14 @@ public class TaskREST {
 	private ResponseEntity<List<Integer>> getDotListTasks(
 			@RequestParam Long homeId, 
 			@RequestParam String initDate,
-			@RequestParam String endDate){
-       /* DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localInitDate = LocalDate.parse(initDate, formatter);
-        LocalDate localEndDate = LocalDate.parse(endDate, formatter);
-*/
-		
+			@RequestParam String endDate){	
 		return ResponseEntity.ok(taskService.getDotListTasks(homeId,initDate,endDate));
+	}
+	
+	@GetMapping("/home/{homeId}")	
+	private ResponseEntity<List<Task>> getHomeTasks(@PathVariable Long homeId){
+		
+		return ResponseEntity.ok(taskService.getHomeTasks(homeId));
 	}
 	
 }

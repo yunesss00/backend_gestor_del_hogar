@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uco.tfg.app.model.Itinerary;
+import com.uco.tfg.app.model.Task;
 import com.uco.tfg.app.repository.ItineraryRepository;
 
 @Service
@@ -29,6 +30,10 @@ public class ItineraryService {
 
 	public Optional<Itinerary> findById(Long id) {
 		return itineraryRepository.findById(id);
+	}
+	
+	public List<Itinerary> getHomeItineraries(Long homeId) {
+		return itineraryRepository.findByHomeId(homeId);
 	}
 
 }
