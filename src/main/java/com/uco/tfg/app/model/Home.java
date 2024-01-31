@@ -46,7 +46,7 @@ public class Home {
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(
-				name = "assignedtasks", joinColumns = @JoinColumn(name = "homeId", referencedColumnName = "id"),
+				name = "assignedTasks", joinColumns = @JoinColumn(name = "homeId", referencedColumnName = "id"),
 				inverseJoinColumns =  @JoinColumn(name = "taskId", referencedColumnName = "id")
 	)
 	private List<Task> lstTasks;

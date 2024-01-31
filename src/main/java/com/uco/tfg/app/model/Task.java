@@ -2,6 +2,9 @@ package com.uco.tfg.app.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,12 +40,8 @@ public class Task {
 	@Column(name = "creator")
 	private Long creator;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinTable(
-				name = "itineraryTasks", joinColumns = @JoinColumn(name = "itineraryId", referencedColumnName = "id"),
-				inverseJoinColumns =  @JoinColumn(name = "taskId", referencedColumnName = "id")
-	)
-	private List<Itinerary> lstItineraries;
+	@ManyToMany(mappedBy = "lstTasks")
+    private List<ItineraryTasks> lstItineraryTasks;
 	
 	@ManyToMany(mappedBy = "lstTasks")
 	private List<User> lstUsers;
