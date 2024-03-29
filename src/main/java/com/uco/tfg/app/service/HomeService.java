@@ -10,12 +10,16 @@ import com.uco.tfg.app.model.Home;
 import com.uco.tfg.app.model.User;
 //import com.uco.tfg.app.model.HomeParticipant;
 import com.uco.tfg.app.repository.HomeRepository;
+import com.uco.tfg.app.repository.UserRepository;
 
 @Service
 public class HomeService {
 
 	@Autowired
 	private HomeRepository homeRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	public Home create(Home home) {
 		return homeRepository.save(home);

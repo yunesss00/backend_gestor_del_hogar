@@ -10,9 +10,12 @@ import org.springframework.stereotype.Repository;
 import com.uco.tfg.app.model.AssignedTask;
 import com.uco.tfg.app.model.Task;
 
+import jakarta.transaction.Transactional;
+
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
 	List<Task> findByHomeId(Long homeId);
+
 
 }

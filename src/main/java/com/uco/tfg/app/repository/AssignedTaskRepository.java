@@ -24,6 +24,7 @@ public interface AssignedTaskRepository extends JpaRepository<AssignedTask, Long
 			+ "    AND assignedtasks.done = 0\r\n"
 			+ "    GROUP BY\r\n"
 			+ "        generate_series\r\n"
+			+ "	   order by day "
 			+ ")\r\n"
 			+ "SELECT\r\n"
 			+ "    COALESCE(has_tasks, 0) AS has_tasks\r\n"

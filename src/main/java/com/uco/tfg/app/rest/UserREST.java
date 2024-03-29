@@ -67,4 +67,9 @@ public class UserREST {
 		}
 	}
 	
+	@GetMapping("/participants/{homeId}")
+    private ResponseEntity<List<User>> getHomeParticipants(@PathVariable Long homeId) {
+		return ResponseEntity.ok(userService.getHomeParticipants(homeId));
+	}	
+	
 }

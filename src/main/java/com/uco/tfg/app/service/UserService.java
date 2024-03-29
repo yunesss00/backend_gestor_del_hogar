@@ -41,4 +41,8 @@ public class UserService {
 		return user;
 	}
 	
+	public List<User> getHomeParticipants(Long homeId) {
+        return userRepository.getHomeParticipants(homeId);
+    }
+	
 }
