@@ -29,14 +29,29 @@ public class Product {
 
 	@Column(name = "productPrice")
 	private Float productPrice;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+
+    @Column(name = "pricequantity")
+    private String priceQuantity;
+
+    @Column(name = "category")
+    private String category;
+
+    @Column(name = "subcategory")
+    private String subcategory;
+
+    @Column(name = "section")
+    private String section;
+
+    @Column(name = "imageurl")
+    private String imageUrl;
+
+	/*@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(
 				name = "shoppingListItems", joinColumns = @JoinColumn(name = "productId", referencedColumnName = "id"),
 				inverseJoinColumns =  @JoinColumn(name = "listId", referencedColumnName = "id")
 	)
 	private List<ShoppingList> lstShoppingLists;
-	
+	*/
 
 	public Long getId() {
 		return id;
@@ -61,6 +76,48 @@ public class Product {
 	public void setProductPrice(Float productPrice) {
 		this.productPrice = productPrice;
 	}
+
+	public String getPriceQuantity() {
+		return priceQuantity;
+	}
+
+	public void setPriceQuantity(String priceQuantity) {
+		this.priceQuantity = priceQuantity;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getSubcategory() {
+		return subcategory;
+	}
+
+	public void setSubcategory(String subcategory) {
+		this.subcategory = subcategory;
+	}
+
+	public String getSection() {
+		return section;
+	}
+
+	public void setSection(String section) {
+		this.section = section;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
+	
 
 	
 	

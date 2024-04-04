@@ -31,14 +31,23 @@ public class ShoppingList {
     @Column(name = "userId")
     private Long userId;
     
-    @Column(name = "homeShoppingList")
-    private int homeShoppingList;    
+    @Column(name = "name")
+    private String name;
     
-    @ManyToMany(mappedBy = "lstShoppingList")
+	@Column(name = "homeShoppingList")
+    private int homeShoppingList;    
+	
+	@Column(name = "homeId")
+    private Long homeId;    
+    
+	@ManyToMany(mappedBy = "lstShoppingList")
     private List<Home> lstHomes; 
     
+    /*@ManyToMany(mappedBy = "lstShoppingLists")
+    private List<Product> lsProducts;*/
+    
     @ManyToMany(mappedBy = "lstShoppingLists")
-    private List<Product> lsProducts;
+    private List<User> lstUsers;
 
     public Long getId() {
         return id;
@@ -47,6 +56,23 @@ public class ShoppingList {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getName() {
+ 		return name;
+ 	}
+
+ 	public void setName(String name) {
+ 		this.name = name;
+ 	}
+ 	
+ 	 public Long getHomeId() {
+ 		return homeId;
+ 	}
+
+ 	public void setHomeId(Long homeId) {
+ 		this.homeId = homeId;
+ 	}
+
 
     public Float getTotalPrice() {
         return totalPrice;
@@ -54,14 +80,6 @@ public class ShoppingList {
 
     public void setTotalPrice(Float totalPrice) {
         this.totalPrice = totalPrice;
-    }
-
-    public Long getUser() {
-        return userId;
-    }
-
-    public void setUser(Long userId) {
-        this.userId = userId;
     }
 
 	public Long getUserId() {
@@ -80,13 +98,13 @@ public class ShoppingList {
 		this.homeShoppingList = homeShoppingList;
 	}
 
-	public List<Product> getLsProducts() {
+	/*public List<Product> getLsProducts() {
 		return lsProducts;
 	}
 
 	public void setLsProducts(List<Product> lsProducts) {
 		this.lsProducts = lsProducts;
-	}
+	}*/
     
     
 }

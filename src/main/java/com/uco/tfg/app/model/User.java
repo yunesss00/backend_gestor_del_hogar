@@ -60,6 +60,13 @@ public class User {
 	)
 	private List<Task> lstTasks;
 	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(
+				name = "shoppingListParticipants", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
+				inverseJoinColumns =  @JoinColumn(name = "listId", referencedColumnName = "id")
+	)
+	private List<ShoppingList> lstShoppingLists;
+	
 	public Long getId() {
 		return id;
 	}

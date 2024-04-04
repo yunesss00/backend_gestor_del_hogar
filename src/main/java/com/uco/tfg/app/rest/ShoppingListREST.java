@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import com.uco.tfg.app.model.ShoppingList;
 import com.uco.tfg.app.service.ShoppingListService;
 @RestController
@@ -46,5 +47,23 @@ public class ShoppingListREST {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage()));
 		}
 	}*/
+    
+    @GetMapping("/myHome/{homeId}")
+    private ResponseEntity<?> findShoppingListsHomeId(@PathVariable Long homeId) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.findShoppingListsHomeId(homeId));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage()));
+		}
+	}
+    
+    @PostMapping("/participants")
+    private ResponseEntity<?> assignParticipants(@RequestParam Long userId,@RequestParam Long listId) {
+    	try {
+    		return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.assignParticipants(userId,listId));
+    	}catch (Exception e){
+    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage()));
+    	}
+    }
     
 }
