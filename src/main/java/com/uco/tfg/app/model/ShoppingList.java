@@ -43,8 +43,8 @@ public class ShoppingList {
 	@ManyToMany(mappedBy = "lstShoppingList")
     private List<Home> lstHomes; 
     
-    /*@ManyToMany(mappedBy = "lstShoppingLists")
-    private List<Product> lsProducts;*/
+    @ManyToMany(mappedBy = "lstShoppingLists")
+    private List<Product> lsProducts;
     
     @ManyToMany(mappedBy = "lstShoppingLists")
     private List<User> lstUsers;
@@ -98,13 +98,13 @@ public class ShoppingList {
 		this.homeShoppingList = homeShoppingList;
 	}
 
-	/*public List<Product> getLsProducts() {
+	public List<Product> getLsProducts() {
 		return lsProducts;
 	}
 
 	public void setLsProducts(List<Product> lsProducts) {
 		this.lsProducts = lsProducts;
-	}*/
+	}
     
     
 }

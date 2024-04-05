@@ -57,10 +57,14 @@ public class ProductREST {
     }
     
     @GetMapping("/search")
-    private Page<Product> getMProducts(@PageableDefault(size = 20)Pageable pageable){
+    private Page<Product> getProducts(@PageableDefault(size = 20)Pageable pageable){
     	
 		return productService.findAll(pageable);
     	
     }
+    
+    
+
+
 
 }

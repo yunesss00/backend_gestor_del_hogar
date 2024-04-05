@@ -44,14 +44,17 @@ public class Product {
 
     @Column(name = "imageurl")
     private String imageUrl;
+    
+    @Column (name = "marketid")
+    private String marketId;
 
-	/*@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinTable(
-				name = "shoppingListItems", joinColumns = @JoinColumn(name = "productId", referencedColumnName = "id"),
+				name = "shoppinglistproducts", joinColumns = @JoinColumn(name = "productId", referencedColumnName = "id"),
 				inverseJoinColumns =  @JoinColumn(name = "listId", referencedColumnName = "id")
 	)
 	private List<ShoppingList> lstShoppingLists;
-	*/
+	
 
 	public Long getId() {
 		return id;
@@ -115,6 +118,14 @@ public class Product {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public String getMarketId() {
+		return marketId;
+	}
+
+	public void setMarketId(String marketId) {
+		this.marketId = marketId;
 	}
 	
 	
