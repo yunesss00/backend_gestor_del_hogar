@@ -66,4 +66,16 @@ public class ShoppingListREST {
     	}
     }
     
+    @GetMapping("/categories")
+    private List<String> getCategories() {
+    	return shoppingListService.getCategories();
+    }
+    
+    @PutMapping("updateProducts")
+    private boolean updateShoppingListProducts(@RequestBody ShoppingList shoppingList) {
+    	return shoppingListService.updateShoppingListProducts(shoppingList);
+    }
+    
+    
+    
 }

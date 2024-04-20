@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.uco.tfg.app.model.Product;
 import com.uco.tfg.app.service.ProductService;
@@ -56,14 +57,24 @@ public class ProductREST {
         return ResponseEntity.ok(productService.findById(id));
     }
     
-    @GetMapping("/search")
+    @GetMapping("/products")
     private Page<Product> getProducts(@PageableDefault(size = 20)Pageable pageable){
     	
 		return productService.findAll(pageable);
     	
     }
     
+    @GetMapping("/search")
+    private Page<Product> findByNameContainingIgnoreCase(@RequestParam String query, @PageableDefault(size = 20)Pageable pageable){
+    	
+		return productService.findByNameContainingIgnoreCase(query,pageable);
+    	
+    }
     
+    @GetMapping("/category")
+    private Page<Product> getProductsByCategory(@RequestParam String category, @PageableDefault(size = 20)Pageable pageable) {
+    	return productService.getProductsByCategory(category,pageable);
+    }
 
 
 
