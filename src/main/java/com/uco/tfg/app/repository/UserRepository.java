@@ -12,7 +12,6 @@ import com.uco.tfg.app.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 	
-	@Query(value = "select id, firstname, lastname1, lastname2, email, photo from users u where email like %:EMAIL%", nativeQuery = true)
 	User findByEmail(@Param("EMAIL") String email);
 	
 	@Query(value ="SELECT u.* FROM users u "

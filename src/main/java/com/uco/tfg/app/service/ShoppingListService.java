@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.uco.tfg.app.model.Product;
 import com.uco.tfg.app.model.ShoppingList;
-import com.uco.tfg.app.model.ShoppingListParticipant;
 import com.uco.tfg.app.model.ShoppingListProduct;
 import com.uco.tfg.app.repository.ShoppingListRepository;
 
@@ -35,13 +34,13 @@ public class ShoppingListService {
     public Optional<ShoppingList> findById(Long id) {
         return shoppingListRepository.findById(id);
     }
-
-	public List<ShoppingList> findShoppingListsHomeId(Long homeId) {
-		return shoppingListRepository.findByLstHomesId(homeId);
+    @Transactional
+	public List<ShoppingList> findMyShoppingLists(Long homeId, Long userId) {
+		return shoppingListRepository.findMyShoppingLists(homeId,userId);
 	}
-
-	public ShoppingListParticipant assignParticipants(Long userId, Long listId) {
-		return shoppingListRepository.assignParticipants(userId, listId);
+	@Transactional
+	public int assignParticipants(Long userId, Long listId, boolean selected) {
+		return shoppingListRepository.assignParticipants(userId, listId,selected ? 1 : 0);
 	}
 
 	public List<String> getCategories() {
@@ -73,6 +72,10 @@ public class ShoppingListService {
 		}
 
 		
+	}
+
+	public Optional<List<Integer>> getShoppingListParticipants(Long id) {
+		return shoppingListRepository.getShoppingListParticipants(id);
 	}
 
 

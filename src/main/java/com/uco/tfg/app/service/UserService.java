@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.uco.tfg.app.model.User;
 import com.uco.tfg.app.repository.UserRepository;
@@ -31,14 +32,9 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 	
+	@Transactional
 	public User findByEmail(String email) throws Exception{
-		User user = null;
-		try  {
-			user = userRepository.findByEmail(email);
-		}catch(Exception e) {
-			
-		}
-		return user;
+		return  userRepository.findByEmail(email);
 	}
 	
 	public List<User> getHomeParticipants(Long homeId) {
