@@ -1,5 +1,7 @@
 package com.uco.tfg.app.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -27,6 +29,20 @@ public class ShoppingListProduct {
 		this.listId = listId;
 	}
 	
+	
+	 @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (o == null || getClass() != o.getClass()) return false;
+	        ShoppingListProduct that = (ShoppingListProduct) o;
+	        return Objects.equals(productId, that.productId) &&
+	               Objects.equals(listId, that.listId);
+	    }
+
+	    @Override
+	    public int hashCode() {
+	        return Objects.hash(productId, listId);
+	    }
 	
 
 }

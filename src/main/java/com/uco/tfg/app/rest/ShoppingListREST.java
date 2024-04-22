@@ -48,22 +48,18 @@ public class ShoppingListREST {
 		}
 	}*/
     
-    @GetMapping("/myHome/{homeId}")
-    private ResponseEntity<?> findShoppingListsHomeId(@PathVariable Long homeId) {
+    @GetMapping("/myHome")
+    private ResponseEntity<?> findMyShoppingLists(@RequestParam Long homeId,@RequestParam Long userId) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.findShoppingListsHomeId(homeId));
+            return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.findMyShoppingLists(homeId, userId));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage()));
 		}
 	}
     
     @PostMapping("/participants")
-    private ResponseEntity<?> assignParticipants(@RequestParam Long userId,@RequestParam Long listId) {
-    	try {
-    		return ResponseEntity.status(HttpStatus.OK).body(shoppingListService.assignParticipants(userId,listId));
-    	}catch (Exception e){
-    		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("error:" + e.getMessage()));
-    	}
+    private int assignParticipants(@RequestParam Long userId,@RequestParam Long listId, @RequestParam boolean selected) {
+    	return shoppingListService.assignParticipants(userId,listId, selected);
     }
     
     @GetMapping("/categories")
@@ -76,6 +72,10 @@ public class ShoppingListREST {
     	return shoppingListService.updateShoppingListProducts(shoppingList);
     }
     
+    @GetMapping("participants/{id}")
+    private Optional<List<Integer>> getShoppingListParticipants(@PathVariable Long id) {
+        return shoppingListService.getShoppingListParticipants(id);
+    }
     
     
 }

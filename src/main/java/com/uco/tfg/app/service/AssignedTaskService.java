@@ -4,6 +4,7 @@ import com.uco.tfg.app.model.AssignedTask;
 import com.uco.tfg.app.repository.AssignedTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,12 +18,12 @@ public class AssignedTaskService {
     public AssignedTaskService(AssignedTaskRepository assignedTaskRepository) {
         this.assignedTaskRepository = assignedTaskRepository;
     }
-
+   // @Transactional
     public AssignedTask getAssignedTaskById(Long id) {
         Optional<AssignedTask> optionalAssignedTask = assignedTaskRepository.findById(id);
         return optionalAssignedTask.orElse(null);
     }
-
+  //  @Transactional
     public List<AssignedTask> getAllAssignedTasks() {
         return assignedTaskRepository.findAll();
     }

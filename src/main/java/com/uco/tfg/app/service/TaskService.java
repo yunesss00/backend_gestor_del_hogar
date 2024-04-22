@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.uco.tfg.app.model.AssignedTask;
 import com.uco.tfg.app.model.Task;
@@ -25,7 +26,7 @@ public class TaskService {
 	public Task create(Task task) {
 		return taskRepository.save(task);
 	}
-
+	@Transactional
 	public List<Task> getAllTasks() {
 		return taskRepository.findAll();
 	}
@@ -33,7 +34,7 @@ public class TaskService {
 	public void delete(Task task) {
 		taskRepository.delete(task);
 	}
-
+	@Transactional
 	public Optional<Task> findById(Long id) {
 		return taskRepository.findById(id);
 	}

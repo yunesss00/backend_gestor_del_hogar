@@ -115,6 +115,13 @@ public class User {
 	public void setLstTasks(List<Task> lstTasks) {
 		this.lstTasks = lstTasks;
 	}
+	/*public List<ShoppingList> getLstShoppingLists() {
+		return lstShoppingLists;
+	}
+	public void setLstShoppingLists(List<ShoppingList> lstShoppingLists) {
+		this.lstShoppingLists = lstShoppingLists;
+	}
+	*/
 	
 	
 }
