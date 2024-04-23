@@ -14,6 +14,7 @@ import com.uco.tfg.app.model.ShoppingListProduct;
 import com.uco.tfg.app.repository.ShoppingListRepository;
 
 @Service
+
 public class ShoppingListService {
 
     @Autowired
@@ -26,8 +27,11 @@ public class ShoppingListService {
     public List<ShoppingList> getAllShoppingLists() {
         return shoppingListRepository.findAll();
     }
-
+    
+    @Transactional
     public void delete(ShoppingList shoppingList) {
+    	shoppingListRepository.participantsDelete(shoppingList.getId());
+    	shoppingListRepository.productsDelete(shoppingList.getId());
         shoppingListRepository.delete(shoppingList);
     }
 
@@ -76,6 +80,11 @@ public class ShoppingListService {
 
 	public Optional<List<Integer>> getShoppingListParticipants(Long id) {
 		return shoppingListRepository.getShoppingListParticipants(id);
+	}
+
+	public void deleteAssignation(ShoppingList shoppingList) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

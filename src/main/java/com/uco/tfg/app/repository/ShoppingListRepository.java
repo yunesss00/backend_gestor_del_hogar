@@ -17,10 +17,19 @@ public interface ShoppingListRepository extends JpaRepository<ShoppingList, Long
 
 	
 	
-	@Query(value = "select lsl1_0.homeId, lsl1_0.id, lsl1_0.homeId, lsl1_0.homeShoppingList, lsl1_0.name, lsl1_0.totalPrice, lsl1_0.userId\r\n"
-			+ "from shoppingLists lsl1_0\r\n"
-			+ "join shoppinglistparticipants slp on slp.listid = lsl1_0.id  and slp.userid = :userId\r\n"
-			+ "where lsl1_0.homeId = :homeId and slp.selected =1", 
+	@Query(value = "SELECT \r\n"
+			+ "    lsl1_0.homeId,\r\n"
+			+ "    lsl1_0.id,\r\n"
+			+ "    lsl1_0.homeShoppingList,\r\n"
+			+ "    lsl1_0.name,\r\n"
+			+ "    lsl1_0.totalPrice,\r\n"
+			+ "    lsl1_0.userId\r\n"
+			+ "FROM \r\n"
+			+ "    shoppingLists lsl1_0\r\n"
+			+ "JOIN \r\n"
+			+ "    shoppinglistparticipants slp ON slp.listid = lsl1_0.id AND slp.userid = :userId\r\n"
+			+ "WHERE \r\n"
+			+ "    lsl1_0.homeId = :homeId AND slp.selected = 1", 
 			nativeQuery = true)
 	List<ShoppingList> findMyShoppingLists(Long homeId, Long userId);
 	
@@ -49,7 +58,17 @@ public interface ShoppingListRepository extends JpaRepository<ShoppingList, Long
 	@Query(value = "select userId from shoppinglistparticipants where listId = :id and selected = 1", 
 			nativeQuery = true)
 	Optional<List<Integer>> getShoppingListParticipants(Long id);
-
+	
+	@Modifying
+	@Query(value = "delete from shoppinglistparticipants where listId = :id", 
+			nativeQuery = true)
+	void participantsDelete(Long id);
+	
+	@Modifying
+	@Query(value = "delete from shoppinglistproducts where listId = :id", 
+			nativeQuery = true)
+	void productsDelete(Long id);
+	
 	
 
 

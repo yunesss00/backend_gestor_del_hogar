@@ -19,6 +19,7 @@ public class ShoppingListREST {
     private ResponseEntity<ShoppingList> saveShoppingList(@RequestBody ShoppingList shoppingList) {
         ShoppingList temp = shoppingListService.create(shoppingList);
         try {
+        	shoppingListService.assignParticipants(shoppingList.getUserId(), shoppingList.getId(), true);
             return ResponseEntity.created(new URI("/api/shoppingList/" + temp.getId())).body(temp);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -28,12 +29,12 @@ public class ShoppingListREST {
     private ResponseEntity<List<ShoppingList>> getAllShoppingLists() {
         return ResponseEntity.ok(shoppingListService.getAllShoppingLists());
     }
-/*
-    @DeleteMapping("/{id}")
-    private ResponseEntity<Void> deleteShoppingList(@PathVariable Long id) {
-        shoppingListService.deleteById(id);
+
+    @DeleteMapping
+    private ResponseEntity<Void> deleteShoppingList(@RequestBody ShoppingList shoppingList) {
+        shoppingListService.delete(shoppingList);
         return ResponseEntity.ok().build();
-    }*/
+    }
     @GetMapping("/{id}")
     private ResponseEntity<Optional<ShoppingList>> getShoppingListById(@PathVariable Long id) {
         return ResponseEntity.ok(shoppingListService.findById(id));

@@ -60,7 +60,7 @@ public class User {
 	)
 	private List<Task> lstTasks;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(
 				name = "shoppingListParticipants", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
 				inverseJoinColumns =  @JoinColumn(name = "listId", referencedColumnName = "id")

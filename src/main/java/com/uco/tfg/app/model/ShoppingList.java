@@ -2,6 +2,7 @@ package com.uco.tfg.app.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -46,7 +47,7 @@ public class ShoppingList {
     @ManyToMany(mappedBy = "lstShoppingLists")
     private List<Product> lsProducts;
     
-    @ManyToMany(mappedBy = "lstShoppingLists")
+    @ManyToMany(mappedBy = "lstShoppingLists", cascade = CascadeType.ALL)
     private List<User> lstUsers;
 
     public Long getId() {
