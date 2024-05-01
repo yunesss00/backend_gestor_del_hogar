@@ -22,6 +22,8 @@ import com.uco.tfg.app.model.User;
 //import com.uco.tfg.app.model.HomeParticipant;
 import com.uco.tfg.app.service.HomeService;
 
+import jakarta.transaction.Transactional;
+
 @RestController
 @RequestMapping ("api/home")
 public class HomeREST {
@@ -76,5 +78,41 @@ public class HomeREST {
 		}
 		
 	}
+	
+	@GetMapping("/myHomes")
+	private ResponseEntity<List<Home>> findMyHomes(@RequestParam Long userId){
+		return ResponseEntity.ok(homeService.findMyHomes(userId));
+		
+	}
+	
+	@PostMapping("/invite")
+	private ResponseEntity<?> inviteUser(@RequestParam String email, @RequestParam Long homeId, @RequestParam Long userId){
+	    try {
+	        // Asumiendo que homeService.addParticipant toma un User y un homeId
+	        return ResponseEntity.status(HttpStatus.OK).body(homeService.inviteUser(email, homeId, userId));
+	    } catch(Exception e) {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("error: " + e.getMessage());
+	    }
+	}
+	
+	@PostMapping("/invite/update")
+	private int updateInvitation(@RequestParam String email, 
+			@RequestParam Long homeId,
+			@RequestParam int accepted){
+	    return homeService.updateInvitation(email, homeId,accepted);
+	}
+	
+	@GetMapping("/invitations")
+	private ResponseEntity<List<Home>> getInvitations(@RequestParam String email){
+	  
+	      return ResponseEntity.ok(homeService.getInvitations(email));
+
+	}
+	
+	@PostMapping("/currentHome")
+	private void setCurrentHome(@RequestParam Long userId, @RequestParam Long homeId){
+	    homeService.setCurrentHome(userId, homeId);
+	}
+	
 
 }
