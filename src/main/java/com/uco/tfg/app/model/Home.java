@@ -83,29 +83,6 @@ public class Home {
 		this.description = description;
 	}
 
-	public List<User> getLstUsers() {
-		return lstUsers;
-	}
-
-	public void setLstUsers(List<User> lstUsers) {
-		this.lstUsers = lstUsers;
-	}
-
-	public List<ShoppingList> getLstShoppingList() {
-		return lstShoppingList;
-	}
-
-	public void setLstShoppingList(List<ShoppingList> lstShoppingList) {
-		this.lstShoppingList = lstShoppingList;
-	}
-
-	public List<Task> getLstTasks() {
-		return lstTasks;
-	}
-
-	public void setLstTasks(List<Task> lstTasks) {
-		this.lstTasks = lstTasks;
-	}
 
 	
 }
