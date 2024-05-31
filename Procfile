@@ -1,1 +1,1 @@
-web: java -jar target/backend_-0.0.1-SNAPSHOT.jar
+web: java  -Dserver.port=8082 -jar target/backend_-0.0.1-SNAPSHOT.jar
