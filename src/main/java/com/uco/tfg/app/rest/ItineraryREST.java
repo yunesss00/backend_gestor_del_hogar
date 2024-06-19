@@ -60,5 +60,11 @@ public class ItineraryREST {
 		
 		return ResponseEntity.ok(itineraryService.getHomeItineraries(homeId));
 	}
+    
+    @PostMapping("/custom")	
+	private void saveItineraryCustom(@RequestBody Itinerary itinerary){
+		
+		itineraryService.saveItineraryCustom(itinerary);
+	}
 
 }
